@@ -32,7 +32,6 @@
         </thead>
 <%
           enteteAffiche = true ;
-    }
 %>
 		<tbody>
           <tr>
@@ -54,11 +53,14 @@
 // ]]>
             </script>
           </tr>
-        </tbody>
+        </tbody
+          <%
+              }
+          %>
       </table>				
       <table>
         <tr>
-          <td><a href="ajoute.jsp">Ajouter un nouveau livre</a></td>
+          <td><a href="ajoute.jsp">Ajouter un nouveau utilisateur</a></td>
         </tr>
       </table>
      </section>

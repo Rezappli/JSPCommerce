@@ -146,6 +146,7 @@ public class CatalogueManager {
 	public void setArticles(List inArticles) throws Exception {
 		articles = inArticles;
 	}
+
 	public List getArticles() throws Exception {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession() ;
 		try {
