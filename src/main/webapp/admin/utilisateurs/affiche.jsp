@@ -1,7 +1,7 @@
     <%@ page pageEncoding="UTF-8"%>
 <%@ include file="../enTetePage.html"%>
 <%@ page import="commerce.catalogue.service.CatalogueManager" %>
-<%@ page import="commerce.catalogue.domaine.modele.Livre" %>
+<%@ page import="commerce.catalogue.domaine.modele.Utilisateur" %>
 <%@ page import="commerce.catalogue.domaine.modele.Article" %>
 <%@ page import="java.util.Iterator" %>
 <%
@@ -14,56 +14,33 @@
     <section class="entry">
       <table>
 <%
-    Livre livre = null ;
-    Article article = null ; 
+    Utilisateur utilisateur = null ;
     Boolean enteteAffiche = false ;
-    Iterator<Article> listeDesLivres = catalogueManager.getArticles().iterator() ;
-    while(listeDesLivres.hasNext()) {
-	  article = listeDesLivres.next() ; 
-	  if (article instanceof Livre) {
-        if (!enteteAffiche) {
+    Iterator<Utilisateur> listeDesUtilisateurs = catalogueManager.getUtilisateurs().iterator() ;
+    while(listeDesUtilisateurs.hasNext()) {
+        utilisateur = listeDesUtilisateurs.next() ;
 %>
         <thead>
           <tr>
-            <th>R&eacute;f&eacute;rence&nbsp;</th>
-            <th>Titre</th>
-            <th>Auteur</th>
-            <th>Disponibilit&eacute;</th>
-            <th>ISBN</th>
-			<th>Image</th>
-            <th>Nombre de pages</th>
-            <th>prix</th>
+            <th>Id</th>
+            <th>Nom</th>
+            <th>Mail</th>
+            <th>Mdp</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
 <%
           enteteAffiche = true ;
-        }
-        livre = (Livre)article ;
+    }
 %>
 		<tbody>
           <tr>
-            <td><%=livre.getRefArticle() %></td>
-            <td><%=livre.getTitre() %></td>
-            <td><%=livre.getAuteur() %></td>
-            <td><%=livre.getDisponibilite() %></td>
-            <td><%=livre.getISBN() %></td>
-<%
-        if (livre.getImage() != null) { 
-%>
-		    <td><%=livre.getImage() %></td>
-<%
-        }
-        else { 
-%>
-		    <td>Inexistante</td>
-<%
-        }
-%>
-            <td><%=livre.getNbPages() %></td>
-            <td><%=livre.getPrix() %></td>
-            <td><a href="controleLivres.jsp?refArticle=<%=livre.getRefArticle() %>&amp;commande=AModifier">Modifier</a></td>
+            <td><%=utilisateur.getId() %></td>
+            <td><%=utilisateur.getName() %></td>
+            <td><%=utilisateur.getMail() %></td>
+            <td><%=utilisateur.getMdp() %></td>
+            <td><a href="controleUtilisateurs.jsp?refArticle=<%=livre.getRefArticle() %>&amp;commande=AModifier">Modifier</a></td>
             <td><a href="javascript:deleteObject('refArticle','<%=livre.getRefArticle() %>')">Supprimer</a></td>
             <script type="text/javascript">
 // <![CDATA[
