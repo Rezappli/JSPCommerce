@@ -23,6 +23,8 @@ public class CatalogueManager {
 
 	private List articles; 
 	private List utilisateurs;
+	private List livres;
+	private List musiques;
 
 	public Article chercherArticleParRef(String inRefArticle) throws Exception {
 		Article article ;

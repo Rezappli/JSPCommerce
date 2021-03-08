@@ -39,28 +39,10 @@
 
             <ul class="navbar-collapse me-auto mb-2 mb-lg-0">
                 <<li class="nav-item">
-                    <img src="images/ecommerce.logo_.png" alt="" width="50" >
+                    <img src="images/ecommerce.logo_.png" alt="<%=response.encodeURL("./afficheRecherche.jsp")%>" width="50" >
                 </li>
 
-                <li class="nav-item dropdown " style="margin-left: auto;margin-right: auto;">
-                    <div class="dropdown">
-                        <button class="btn btn-dark  dropdown-toggle"  id="navbarDropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Recherche un article
-                        </button>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu   ">
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRecherche.jsp")%>">Tout</a></li>
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRechercheLivre.jsp")%>">Livre</a></li>
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRechercheMusique.jsp")%>">Musique</a></li>
-                        </ul>
-                    </div>
-
-                </li>
             </ul>
-            <a class="text-decoration-none" href="<%=response.encodeURL("./seConnecter.jsp")%>"><button class="btn btn-outline-light d-flex me-5" type="button"> Connexion/Inscription</button></a>
-
-            <a class="navbar-brand" href="<%=response.encodeURL("./controlePanier.jsp")%>">
-                <img src="images/shopping-cart-add.png" alt="" width="30" >
-            </a>
         </div>
     </div>
 </nav>
