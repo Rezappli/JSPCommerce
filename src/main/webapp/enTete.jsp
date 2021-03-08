@@ -1,6 +1,7 @@
 <%@ page import="java.util.Iterator" %>
 <%@ page import="commerce.gestion.Panier" %>
-<%@ page import="commerce.catalogue.service.CatalogueManager" %><%--
+<%@ page import="commerce.catalogue.service.CatalogueManager" %>
+<%@ page import="commerce.web.utilitaire.TypeArticle" %><%--
   Created by IntelliJ IDEA.
   User: mathi
   Date: 08/03/2021
@@ -48,9 +49,9 @@
                             Recherche un article
                         </button>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenu   ">
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRecherche.jsp")%>">Tout</a></li>
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRechercheLivre.jsp")%>">Livre</a></li>
-                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRechercheMusique.jsp")%>">Musique</a></li>
+                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRecherche.jsp?type="+TypeArticle.TOUT.toString())%>">Tout</a></li>
+                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRecherche.jsp?type="+TypeArticle.LIVRE.toString())%>">Livre</a></li>
+                            <li><a class="dropdown-item" href="<%=response.encodeURL("./afficheRecherche.jsp?type="+TypeArticle.MUSIQUE)%>">Musique</a></li>
                         </ul>
                     </div>
 
