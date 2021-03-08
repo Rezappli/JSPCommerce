@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ include file="enTete.jsp"%>
 <%@ page import="commerce.catalogue.service.CatalogueManager"%>
 <%@ page import="commerce.catalogue.domaine.modele.Article"%>
 <%@ page import="commerce.catalogue.domaine.modele.Livre"%>
@@ -39,12 +40,9 @@
                     $("#password").attr('style',"");
                  }
 
-                 if(error){
-                    $("#login") += "testets";
-                 }else{
+                 $("#valid_button").attr('disabled',error);
 
-                 }
-                  }, 1000);
+                  }, 100);
          });
     </script>
 
@@ -62,12 +60,13 @@
         <form action="/my-handling-form-page" method="get" >
           <input type="text" id="login" class="fadeIn second" name="login" placeholder="identifiant">
           <input type="text" id="password" class="fadeIn third" name="login" placeholder="mot de passe">
-          <input type="submit" class="fadeIn fourth" value="s'enregistrer" desable >
+          <input type="submit" id="valid_button" class="fadeIn fourth" value="s'enregistrer" >
         </form>
 
         <!-- Remind Passowrd -->
         <div id="formFooter">
-          <a class="underlineHover" href="#">mot de passe oublié?</a>
+          <a class="underlineHover" href="#">mot de passe oublié?</a><br>
+          <a class="underlineHover" href="<%=response.encodeURL("./creerCompte.jsp")%>">Se créer un compte</a>
         </div>
 
       </div>

@@ -13,14 +13,20 @@
         session.setAttribute("utilisateur", utilisateur) ;
         response.sendRedirect(response.encodeURL("modifie.jsp")) ;
       }
-      if (request.getParameter("commande").equals("ajouter")
-       || request.getParameter("commande").equals("modifier")) {
+      if (request.getParameter("commande").equals("modifier")) {
         utilisateur.setId(request.getParameter("id")) ;
         utilisateur.setName(request.getParameter("name")); ;
         utilisateur.setMail(request.getParameter("mail")); ;
         utilisateur.setMdp(request.getParameter("mdp")); ;
         catalogueManager.soumettreUtilisateur(utilisateur); ;
 	    response.sendRedirect(response.encodeURL("affiche.jsp")) ;
+      }
+      if(request.getParameter("commande").equals("ajouter")){
+        Utilisateur newUti = new Utilisateur();
+        newUti.setName(request.getParameter("name"));
+        newUti.setMail(request.getParameter("mail"));
+        newUti.setMdp(request.getParameter("mdp"));
+        catalogueManager.soumettreUtilisateur(newUti);
       }
       if (request.getParameter("commande").equals("supprimer")) {
         catalogueManager.supprimerUtilisateurParId(request.getParameter("id")); ;
