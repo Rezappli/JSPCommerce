@@ -4,15 +4,17 @@
 <%@ page import="java.lang.reflect.Field" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Arrays" %>
+<%@ page import="sun.nio.ch.Util" %>
+<%@ page import="commerce.catalogue.domaine.modele.Utilisateur" %>
 <%
-  Livre livre = new Livre() ;
+  Utilisateur utilisateur = new Utilisateur() ;
 %>
     <form action="controleUtilisateurs.jsp?commande=ajouter" method="post">
 <%
-  Field[] articleFields = livre.getClass().getSuperclass().getDeclaredFields();
+  Field[] articleFields = utilisateur.getClass().getDeclaredFields();
   ArrayList<Field> list = new ArrayList<Field>(Arrays.asList(articleFields));
   for (int i = 0; i < list.size(); i++) {
-    if (list.get(i).getName().equals("refArticle")) {
+    if (list.get(i).getName().equals("id")) {
 	  list.remove(i);
     }
   }
@@ -42,7 +44,7 @@
 	  </div>
 <%
   }
-  %>
+%>
       <div>
         <input type="Submit" name="Submit" Value="Submit"/>
 	  </div>
