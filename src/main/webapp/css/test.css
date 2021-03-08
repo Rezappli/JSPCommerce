@@ -1,0 +1,28 @@
+.grid-container {
+    height:100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 2px 2px;
+  grid-template-areas:
+    ". . . . . . ."
+    "image image image image titre titre titre"
+    "image image image image prix prix prix"
+    "image image image image quantite quantite quantite"
+    "image image image image ajout_panier ajout_panier ajout_panier"
+    ". . . . . . .";
+}
+
+.ajout_panier { grid-area: ajout_panier; text-align:center; }
+
+.quantite { grid-area: quantite; text-align:center; }
+
+.prix { grid-area: prix; text-align:center;}
+
+.titre { grid-area: titre; text-align:center; }
+
+.image { grid-area: image;  text-align:center;}
+
+.button_link{
+   appearance: button;
+}
