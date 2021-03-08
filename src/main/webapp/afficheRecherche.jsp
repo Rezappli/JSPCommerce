@@ -12,6 +12,7 @@
 	if (session.getAttribute("panier") == null) {
 		response.sendRedirect("./index.jsp");
 	} else {
+
 		CatalogueManager catalogueManager = (CatalogueManager) application
 				.getAttribute("catalogueManager");
 		String type = request.getParameter("type");
