@@ -33,7 +33,6 @@ $(document).ready(function(){
 });
 function valid(){
         console.log(end_quantity) ;
-        console.log("http://localhost:8080/tpv37/controlePanier.jsp?refArticle=<%=article.getRefArticle()%>&quantity="+end_quantity+"&commande=ajouterLigne");
         window.location = "http://localhost:8080/tpv37/controlePanier.jsp?refArticle=<%=article.getRefArticle()%>&quantity="+end_quantity+"&commande=ajouterLigne";
     }
 </script>
