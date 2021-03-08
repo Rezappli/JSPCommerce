@@ -40,8 +40,8 @@
             <td><%=utilisateur.getName() %></td>
             <td><%=utilisateur.getMail() %></td>
             <td><%=utilisateur.getMdp() %></td>
-            <td><a href="controleUtilisateurs.jsp?refArticle=<%=livre.getRefArticle() %>&amp;commande=AModifier">Modifier</a></td>
-            <td><a href="javascript:deleteObject('refArticle','<%=livre.getRefArticle() %>')">Supprimer</a></td>
+            <td><a href="controleUtilisateurs.jsp?id=<%=utilisateur.getId() %>&amp;commande=AModifier">Modifier</a></td>
+            <td><a href="javascript:deleteObject('id','<%=utilisateur.getId() %>')">Supprimer</a></td>
             <script type="text/javascript">
 // <![CDATA[
 	function deleteObject(id,idval)
@@ -55,10 +55,6 @@
             </script>
           </tr>
         </tbody>
-<%
-      }
-    } 
-%>
       </table>				
       <table>
         <tr>
