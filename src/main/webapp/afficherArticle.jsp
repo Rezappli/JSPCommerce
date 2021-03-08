@@ -69,7 +69,7 @@ function valid(){
     <h1> <%= article.getTitre() %> </h1>
   </div>
   <div class="image">
-    <img style="height:100%;" src="<% if (article.getImage().startsWith("http"))
+    <img style="height:100%;"   src="<% if (article.getImage().startsWith("http"))
                         out.print(article.getImage()) ;
                     else
                         out.print("./images/"+article.getImage()) ; %>" >

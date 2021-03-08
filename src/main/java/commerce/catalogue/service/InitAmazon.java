@@ -159,8 +159,8 @@ public class InitAmazon {
 						e.printStackTrace() ;
 					}
 				}
-			}
-			else {
+			/*}
+			else {*/
 				try { 
 					livre = new Livre();
 					livre.setRefArticle("1141555677821");
