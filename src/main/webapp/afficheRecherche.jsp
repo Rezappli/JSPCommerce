@@ -23,19 +23,6 @@
 %>
 
 
-<nav id="navigation" class="col-full" role="navigation">
-	<ul id="main-nav" class="nav fl">
-		<li id="menu-item-290"
-			class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item">
-			<a href="<%=response.encodeURL("./afficheRecherche.jsp")%>">Rechercher
-				un article</a>
-		</li>
-		<li id="menu-item-290"
-			class="menu-item menu-item-type-custom menu-item-object-custom">
-			<a href="<%=response.encodeURL("./controlePanier.jsp")%>">Panier</a>
-		</li>
-	</ul>
-</nav>
 <div id="content" class="site-content" tabindex="-1">
 	<div class="col-full">
 		<div class="primary" class="content-area">
@@ -68,7 +55,38 @@
 							class="button add_to_cart_button product_type_simple">Mettre
 						dans le panier</a>
 							<%
-}else if(request.getParameter("type").equals(TypeArticle.LIVRE.toString())){
+								if(article instanceof Musique){
+									musique = (Musique) article;
+								if(musique.getPistes().size()>0){
+							%>
+						<div id="jquery_jplayer_<%=article.getRefArticle()%>" class="jp-jplayer"></div>
+						<div id="jp_container_<%=article.getRefArticle()%>" class="jp-audio" role="application">
+							<div class="jp-type-playlist">
+								<div class="jp-gui jp-interface">
+									<div class="jp-controls-holder">
+										<div class="jp-controls">
+											<button class="jp-previous" role="button" tabindex="0">previous</button>
+											<button class="jp-play" role="button" tabindex="0">play</button>
+											<button class="jp-stop" role="button" tabindex="0">stop</button>
+											<button class="jp-next" role="button" tabindex="0">next</button>
+										</div>
+									</div>
+								</div>
+								<div class="jp-playlist">
+									<ul>
+										<li>&nbsp;</li>
+									</ul>
+								</div>
+								<div class="jp-no-solution">
+									<span>Update Required</span> To play the media you will need to
+									either update your browser to a recent version or update your <a
+										href="http://get.adobe.com/flashplayer/" target="_blank">Flash
+									plugin</a>.
+								</div>
+							</div>
+						</div>
+						<%
+}}}else if(request.getParameter("type").equals(TypeArticle.LIVRE.toString())){
 									if(article instanceof Livre){
 										livre = (Livre) article;
 
@@ -122,8 +140,7 @@
 
 							<%
 							if(musique.getPistes().size()>0){
-								%>
-
+							%>
 						<div id="jquery_jplayer_<%=musique.getRefArticle()%>" class="jp-jplayer"></div>
 						<div id="jp_container_<%=musique.getRefArticle()%>" class="jp-audio" role="application">
 							<div class="jp-type-playlist">
