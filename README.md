@@ -11,3 +11,14 @@ Fonctionnalités:
 
 - ajouter d'un slider de volume -> inProgress
 
+- Concept de compte
+
+  - page de création et de suppréssion de compte
+  
+  - ajout de pages admin pour manipuler les comptes
+    - affiche
+    - ajoute
+    - controleutilisateur
+    - modifie
+  
+
