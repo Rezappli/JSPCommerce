@@ -54,8 +54,7 @@
 					</a> <a
 							href="<%=response.encodeURL("./afficherArticle.jsp?refArticle="
                               								+ article.getRefArticle() )%>"
-							class="button add_to_cart_button product_type_simple">Mettre
-						dans le panier</a>
+							class="button add_to_cart_button product_type_simple">Afficher les détails</a>
 							<%
 								if(article instanceof Musique){
 									musique = (Musique) article;
@@ -144,8 +143,7 @@
 					</a> <a
 							href="<%=response.encodeURL("./afficherArticle.jsp?refArticle="
                               								+ article.getRefArticle() )%>"
-							class="button add_to_cart_button product_type_simple">Mettre
-						dans le panier</a>
+							class="button add_to_cart_button product_type_simple">Afficher les détails</a>
 
 							<%
 							if(musique.getPistes().size()>0){

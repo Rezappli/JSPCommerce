@@ -52,12 +52,25 @@ function valid(){
           Ajouter au panier
       </button>
   </div>
+
   <div class="quantite">
     <input id="quantity_input" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1" max="<%=article.getDisponibilite()%>">
+      <%
+          if(article.getDisponibilite() == 1){
+      %>
+      <div class="text-danger"><i>Plus qu'1 article en stock ! </i></div>
+      <%
+          }
+          if(article.getDisponibilite() < 10 && article.getDisponibilite() != 1){
+          %>
+      <div class="text-danger"><i>Plus que <%=article.getDisponibilite()%> articles en stock ! </i></div>
+      <%
+          }
+      %>
   </div>
   <div class="prix">
     <h2 id="price"><%= article.getPrix() %> €</h2>
-      <div class="text-black-50">Stock : <%=article.getDisponibilite()%></div>
+
   </div>
   <div class="titre">
     <h1> <%= article.getTitre() %> </h1>
