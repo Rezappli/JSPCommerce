@@ -59,11 +59,16 @@
         </div>
 
         <!-- Login Form -->
-        <form action="/my-handling-form-page" method="get" >
+        <form action="./controleConnexion.jsp" method="get" >
           <br><div class="text-black50">Se connecter</div><br>
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="Entrez voter mail">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="Entrez votre mot de passe">
-          <input type="submit" id="valid_button" class="fadeIn fourth" value="s'identifier" >
+          <input type="text" id="login" class="fadeIn second" name="name" placeholder="Entrez voter nom d'utilisateur">
+          <input type="text" id="password" class="fadeIn third" name="password" placeholder="Entrez votre mot de passe">
+          <input type="submit" id="valid_button" class="fadeIn fourth" value="s'identifier"><br>
+          <%
+            if(request.getParameter("error") != null){ %>
+                <div class="text-red50">Adresse mail et\ou mot de passe incorrect</div>
+            <%}
+          %>
         </form>
 
         <!-- Remind Passowrd -->
