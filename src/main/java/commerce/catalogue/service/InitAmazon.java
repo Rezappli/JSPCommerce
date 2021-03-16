@@ -43,7 +43,7 @@ public class InitAmazon {
 		this.catalogueManager = catalogueManager ;
 	}
 
-	public void init(String type, String keywords) {
+	public void init() {
 		// Lien pour obtenir la clé d'accès et la clé secrète auprès d'Amazon.
 		// https://portal.aws.amazon.com/gp/aws/securityCredentials
 		/*
@@ -67,16 +67,14 @@ public class InitAmazon {
 		conf.setSecretKey(AWS_SECRET_KEY);
 		conf.setEndPoint(ENDPOINT);
 
-		System.out.println("INIT AMAZON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 
 		ApaiIO apaiIO = new ApaiIO();
 		apaiIO.setConfiguration(conf) ;
 		Search search = new Search();
-		search.setCategory(type);
+		search.setCategory("Music");
 		search.setResponseGroup("Offers,ItemAttributes,Images") ;
+		String keywords = "Ibrahim Maalouf" ;
 		search.setKeywords(keywords);
-
 
 		Livre livre ;
 		Musique musique ;
@@ -93,7 +91,6 @@ public class InitAmazon {
 			espaceNom = Namespace.getNamespace(racine.getNamespaceURI());
 
 			if (espaceNom != null && !racine.getName().equals("ItemSearchErrorResponse")) {
-				System.out.println("ESPACE NOM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				Element items = racine.getChild("Items",espaceNom) ;
 				Iterator<Element> itemIterator = items.getChildren("Item",espaceNom).iterator() ;
 				Element item ;
@@ -105,16 +102,14 @@ public class InitAmazon {
 				Artists artists = deezerClient.search(new SearchArtist(keywords)) ;
 				Albums albums = deezerClient.getAlbums(new ArtistId(artists.getData().get(0).getId()));
 				
-				while (itemIterator.hasNext() && i != 15) {
-					System.out.println("NEXT ELEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+				while (itemIterator.hasNext() && i != 5) {
 					item = itemIterator.next() ;
 					itemAttributes = item.getChild("ItemAttributes",espaceNom);
 					image = item.getChild("LargeImage",espaceNom);
-					try
+					musique = new Musique();
+					try 
 					{
 						if (itemAttributes.getChild("ProductGroup",espaceNom).getText().equals("Music")) {
-							System.out.println("MUSIC!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-							musique = new Musique();
 							musique.setRefArticle(item.getChild("ASIN",espaceNom).getText());
 							musique.setTitre(itemAttributes.getChild("Title",espaceNom).getText());
 							musique.setEAN(itemAttributes.getChild("EAN",espaceNom).getText());
@@ -156,18 +151,7 @@ public class InitAmazon {
 							}
 							catalogueManager.soumettreArticle(musique) ;
 							i ++ ;
-						}else{
-							System.out.println("LIVRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-							livre = new Livre();
-							livre.setRefArticle(item.getChild("ASIN",espaceNom).getText());
-							livre.setTitre(itemAttributes.getChild("Title",espaceNom).getText());
-							livre.setImage(image.getChild("URL",espaceNom).getText());
-							livre.setPrix(Integer.parseInt(item.getChild("OfferSummary",espaceNom).getChild("LowestNewPrice",espaceNom).getChild("Amount",espaceNom).getText())/100.0);
-							livre.setDisponibilite(1);
-							catalogueManager.soumettreArticle(livre) ;
-							i ++ ;
 						}
-
 					}
 					catch (NullPointerException e) {
 						e.printStackTrace() ;
@@ -176,8 +160,6 @@ public class InitAmazon {
 						e.printStackTrace() ;
 					}
 				}
-				System.out.println("END OF ELEMENTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
 			/*}
 			else {*/
 				try { 
@@ -223,10 +205,5 @@ public class InitAmazon {
 		catch (IOException e) {
 			e.printStackTrace() ;
 		}
-	}
-
-
-	public void searchArticle(){
-
 	}
 }

@@ -21,6 +21,7 @@
 		Livre livre = null;
 		Musique musique = null;
 		Article article;
+		int index = 1;
 %>
 
 
@@ -65,17 +66,26 @@
 							<div class="jp-type-playlist">
 								<div class="jp-gui jp-interface">
 									<div class="jp-controls-holder">
+										<div class="text-black-50 mt-3"><%= musique.getPistes().size()%> pistes</div>
 										<div class="jp-controls">
 											<button class="jp-previous" role="button" tabindex="0">previous</button>
 											<button class="jp-play" role="button" tabindex="0">play</button>
 											<button class="jp-stop" role="button" tabindex="0">stop</button>
-											<button class="jp-next" role="button" tabindex="0">next</button>
+											<button class="jp-next" role="button" tabindex="0" onclick="">next</button>
 										</div>
+										<div class="jp-controls">
+											<button class="jp-seek-bar" style="height: 5px; width: 180px" role="button" tabindex="0">previous</button>
+											<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0">previous</button>
+											<label class="jp-current-time" style="margin-left: -20px; margin-top: 5px" role="button" tabindex="0">previous</label>
+										</div>
+
 									</div>
+
 								</div>
 								<div class="jp-playlist">
 									<ul>
 										<li>&nbsp;</li>
+
 									</ul>
 								</div>
 								<div class="jp-no-solution">
@@ -90,8 +100,7 @@
 }}}else if(request.getParameter("type").equals(TypeArticle.LIVRE.toString())){
 									if(article instanceof Livre){
 										livre = (Livre) article;
-
-										%>
+									%>
 					<li class="product type-product"><a
 							href="<%=response.encodeURL("./afficherArticle.jsp?refArticle="
 								+ article.getRefArticle() )%>"> <img
@@ -141,6 +150,7 @@
 
 							<%
 							if(musique.getPistes().size()>0){
+
 							%>
 						<div id="jquery_jplayer_<%=musique.getRefArticle()%>" class="jp-jplayer"></div>
 						<div id="jp_container_<%=musique.getRefArticle()%>" class="jp-audio" role="application">
@@ -151,8 +161,8 @@
 											<button class="jp-previous" role="button" tabindex="0">previous</button>
 											<button class="jp-play" role="button" tabindex="0">play</button>
 											<button class="jp-stop" role="button" tabindex="0">stop</button>
-											<button class="jp-next" role="button" tabindex="0">next</button>
-										</div>
+											<button class="jp-next" role="button" tabindex="0" onclick="">next()</button>
+											</div>
 									</div>
 								</div>
 								<div class="jp-playlist">
@@ -168,6 +178,7 @@
 								</div>
 							</div>
 						</div>
+
 							<%
 		}
 						}
@@ -181,6 +192,15 @@
 	</div>
 </div>
 <script type="text/javascript">
+	var index = 1;
+	function next(){
+
+		if(index <= <%=musique.getPistes().size()%>){
+			index+=1;
+			document.getElementById("sum").innerHTML=index;
+		}
+	};
+
 	window.addEventListener("load", myFunction, false);
 
 	function myFunction(event) {
@@ -190,6 +210,8 @@
                     article = (Article) listeDesArticles.next();
                     if (article instanceof Musique) {
         %>
+
+
 		var myPlaylist_<%=article.getRefArticle()%> = new jPlayerPlaylist({
 			cssSelectorAncestor: "#jp_container_<%=article.getRefArticle()%>",
 			jPlayer: "#jquery_jplayer_<%=article.getRefArticle()%>"
