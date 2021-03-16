@@ -21,7 +21,6 @@
                session.setAttribute("name", user.getName());
                session.setAttribute("mail", user.getMail());
                response.sendRedirect(response.encodeURL("afficheRecherche.jsp?type="+ TypeArticle.TOUT.toString())) ;
-
             }else{
                 response.sendRedirect(response.encodeURL("./seConnecter.jsp?error=true"));
             }

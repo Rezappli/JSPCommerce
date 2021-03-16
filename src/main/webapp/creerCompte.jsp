@@ -78,8 +78,8 @@
           <input type="hidden" id="commande" class="fadeIn second" name="commande" placeholder="commande" value="ajouter" visible="false">
           <input type="text" id="login" class="fadeIn second" name="name" placeholder="nom">
           <input type="text" id="mail" class="fadeIn third" name="mail" placeholder="mail">
-          <input type="text" id="password" class="fadeIn third" name="mdp" placeholder="mot de passe">
-          <input type="text" id="confirmPassword" class="fadeIn third" name="login" placeholder="confirmation mot de passe">
+          <input type="text" id="password" class="fadeIn third" name="mdp" placeholder="mot de passe" minlength="7" maxlength="20">
+          <input type="text" id="confirmPassword" class="fadeIn third" name="login" placeholder="confirmation mot de passe" minlength="7" maxlength="20">
           <input type="submit" id="valid_button" class="fadeIn fourth" value="s'enregistrer" >
         </form>
 
