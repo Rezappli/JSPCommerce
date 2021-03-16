@@ -47,14 +47,17 @@ function valid(){
 
 
 <div class="grid-container">
-  <div class="ajout_panier">
+  <div class="ajout_panier" >
       <button class="btn btn-outline-dark" type="button" onClick=valid()>
           Ajouter au panier
       </button>
   </div>
 
-  <div class="quantite">
-    <input id="quantity_input" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1" max="<%=article.getDisponibilite()%>">
+  <div class="quantite mb-5">
+
+      <div class="text-black-50">Quantité</div>
+
+      <input id="quantity_input" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1" max="<%=article.getDisponibilite()%>">
       <%
           if(article.getDisponibilite() == 1){
       %>
@@ -68,7 +71,7 @@ function valid(){
           }
       %>
   </div>
-  <div class="prix">
+  <div class="prix mt-3">
     <h2 id="price"><%= article.getPrix() %> €</h2>
 
   </div>
