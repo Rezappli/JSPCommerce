@@ -34,6 +34,14 @@
                           $("#login").attr('style',"");
                        }
 
+                        if(/\s/.test( $("#login").val() ) || $("#login").val() =="") {
+                           $("#login").attr('style',"background-color: #f78383;");
+                           error = true;
+                        }else{
+                           $("#login").attr('style',"");
+                        }
+
+
                        if(/\s/.test( $("#password").val() ) || $("#password").val() ==""){
                           $("#password").attr('style',"background-color: #f78383;");
                           error = true;
@@ -67,6 +75,7 @@
 
         <!-- Login Form -->
         <form action="http://localhost:8080/tpv37/admin/utilisateurs/controleUtilisateurs.jsp?commande=ajouter" method="get" >
+          <input type="text" id="commande" class="fadeIn second" name="commande" placeholder="commande" value="ajouter" visible="false">
           <input type="text" id="login" class="fadeIn second" name="name" placeholder="nom">
           <input type="text" id="mail" class="fadeIn third" name="mail" placeholder="mail">
           <input type="text" id="password" class="fadeIn third" name="mdp" placeholder="mot de passe">
