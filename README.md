@@ -25,6 +25,9 @@ Fonctionnalités:
     - modifie
    
  - Filtre des produits (afficherRecherche)
+ - Nouvelle barre de navigation
+  - menu de connexion/inscription
+  -   
   
   
 
