@@ -42,7 +42,6 @@ public class InitAmazon {
 	public InitAmazon(CatalogueManager catalogueManager) {
 		this.catalogueManager = catalogueManager ;
 	}
-
 	public void init(String type, String keywords) {
 		// Lien pour obtenir la clé d'accès et la clé secrète auprès d'Amazon.
 		// https://portal.aws.amazon.com/gp/aws/securityCredentials
