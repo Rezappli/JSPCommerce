@@ -10,7 +10,7 @@
 <%
     if (session.getAttribute("panier")==null) {
   		response.sendRedirect("./index.jsp");
-  	}else if(){
+  	}else if(session.getAttribute("id")!=null){
   	    response.sendRedirect(response.encodeURL("afficheRecherche.jsp?type="+ TypeArticle.TOUT.toString())) ;
   	}else {
   		CatalogueManager catalogueManager = (CatalogueManager) application
@@ -60,14 +60,15 @@
 
         <!-- Login Form -->
         <form action="/my-handling-form-page" method="get" >
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="identifiant">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="mot de passe">
-          <input type="submit" id="valid_button" class="fadeIn fourth" value="s'enregistrer" >
+          <br><div class="text-black50">Se connecter</div><br>
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="Entrez voter mail">
+          <input type="text" id="password" class="fadeIn third" name="login" placeholder="Entrez votre mot de passe">
+          <input type="submit" id="valid_button" class="fadeIn fourth" value="s'identifier" >
         </form>
 
         <!-- Remind Passowrd -->
         <div id="formFooter">
-          <a class="underlineHover" href="#">mot de passe oublié?</a><br>
+          <a class="underlineHover" href="#">Mot de passe oublié?</a><br>
           <a class="underlineHover" href="<%=response.encodeURL("./creerCompte.jsp")%>">Se créer un compte</a>
         </div>
 
