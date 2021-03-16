@@ -42,7 +42,7 @@
                         }
 
 
-                       if(/\s/.test( $("#password").val() ) || $("#password").val() ==""){
+                       if(/\s/.test( $("#password").val() ) || $("#password").val() =="" || $("#password").val().length() < 6 ){
                           $("#password").attr('style',"background-color: #f78383;");
                           error = true;
                        }else{
