@@ -43,21 +43,20 @@ public class InitAmazon {
 		this.catalogueManager = catalogueManager ;
 	}
 
-	public void init() {
+	public void init(String type, String keywords) {
 		// Lien pour obtenir la clé d'accès et la clé secrète auprès d'Amazon.
 		// https://portal.aws.amazon.com/gp/aws/securityCredentials
 		/*
 		 * Utiliser l'un des points d'accès en fonction du type d'article/prix/...
-		 * 
-		 *      US: ecs.amazonaws.com 
-		 *      CA: ecs.amazonaws.ca 
-		 *      UK: ecs.amazonaws.co.uk 
-		 *      DE: ecs.amazonaws.de 
-		 *      FR: ecs.amazonaws.fr 
+		 *
+		 *      US: ecs.amazonaws.com
+		 *      CA: ecs.amazonaws.ca
+		 *      UK: ecs.amazonaws.co.uk
+		 *      DE: ecs.amazonaws.de
+		 *      FR: ecs.amazonaws.fr
 		 *      JP: ecs.amazonaws.jp
 		 */
-
-		//String ENDPOINT = "ecs.amazonaws.fr" ; 
+		//String ENDPOINT = "ecs.amazonaws.fr" ;
 		String ENDPOINT = "odp.tuxfamily.org";
 		String AWS_ACCESS_KEY_ID = "YOUR_ACCESS_KEY_ID_HERE";
 		String AWS_SECRET_KEY = "YOUR_SECRET_KEY_HERE";
@@ -67,14 +66,16 @@ public class InitAmazon {
 		conf.setSecretKey(AWS_SECRET_KEY);
 		conf.setEndPoint(ENDPOINT);
 
+		System.out.println("INIT AMAZON!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
 
 		ApaiIO apaiIO = new ApaiIO();
 		apaiIO.setConfiguration(conf) ;
 		Search search = new Search();
-		search.setCategory("Music");
+		search.setCategory(type);
 		search.setResponseGroup("Offers,ItemAttributes,Images") ;
-		String keywords = "Ibrahim Maalouf" ;
 		search.setKeywords(keywords);
+
 
 		Livre livre ;
 		Musique musique ;
@@ -91,25 +92,28 @@ public class InitAmazon {
 			espaceNom = Namespace.getNamespace(racine.getNamespaceURI());
 
 			if (espaceNom != null && !racine.getName().equals("ItemSearchErrorResponse")) {
+				System.out.println("ESPACE NOM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 				Element items = racine.getChild("Items",espaceNom) ;
 				Iterator<Element> itemIterator = items.getChildren("Item",espaceNom).iterator() ;
 				Element item ;
 				Element itemAttributes ;
 				Element image ;
 				int i = 0 ;
-				
+
 				DeezerClient deezerClient = new DeezerClient();
 				Artists artists = deezerClient.search(new SearchArtist(keywords)) ;
 				Albums albums = deezerClient.getAlbums(new ArtistId(artists.getData().get(0).getId()));
-				
-				while (itemIterator.hasNext() && i != 5) {
+
+				while (itemIterator.hasNext() && i != 15) {
+					System.out.println("NEXT ELEMENT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 					item = itemIterator.next() ;
 					itemAttributes = item.getChild("ItemAttributes",espaceNom);
 					image = item.getChild("LargeImage",espaceNom);
-					musique = new Musique();
-					try 
+					try
 					{
 						if (itemAttributes.getChild("ProductGroup",espaceNom).getText().equals("Music")) {
+							System.out.println("MUSIC!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+							musique = new Musique();
 							musique.setRefArticle(item.getChild("ASIN",espaceNom).getText());
 							musique.setTitre(itemAttributes.getChild("Title",espaceNom).getText());
 							musique.setEAN(itemAttributes.getChild("EAN",espaceNom).getText());
@@ -151,7 +155,18 @@ public class InitAmazon {
 							}
 							catalogueManager.soumettreArticle(musique) ;
 							i ++ ;
+						}else{
+							System.out.println("LIVRE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+							livre = new Livre();
+							livre.setRefArticle(item.getChild("ASIN",espaceNom).getText());
+							livre.setTitre(itemAttributes.getChild("Title",espaceNom).getText());
+							livre.setImage(image.getChild("URL",espaceNom).getText());
+							livre.setPrix(Integer.parseInt(item.getChild("OfferSummary",espaceNom).getChild("LowestNewPrice",espaceNom).getChild("Amount",espaceNom).getText())/100.0);
+							livre.setDisponibilite(1);
+							catalogueManager.soumettreArticle(livre) ;
+							i ++ ;
 						}
+
 					}
 					catch (NullPointerException e) {
 						e.printStackTrace() ;
@@ -160,9 +175,11 @@ public class InitAmazon {
 						e.printStackTrace() ;
 					}
 				}
+				System.out.println("END OF ELEMENTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
 			/*}
 			else {*/
-				try { 
+				try {
 					livre = new Livre();
 					livre.setRefArticle("1141555677821");
 					livre.setTitre("Le seigneur des anneaux");

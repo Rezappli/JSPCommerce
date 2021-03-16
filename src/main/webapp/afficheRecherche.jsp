@@ -78,7 +78,6 @@
 											<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0">previous</button>
 											<label class="jp-current-time" style="margin-left: -20px; margin-top: 5px" role="button" tabindex="0">previous</label>
 										</div>
-
 									</div>
 
 								</div>
@@ -161,7 +160,7 @@
 											<button class="jp-previous" role="button" tabindex="0">previous</button>
 											<button class="jp-play" role="button" tabindex="0">play</button>
 											<button class="jp-stop" role="button" tabindex="0">stop</button>
-											<button class="jp-next" role="button" tabindex="0" onclick="">next()</button>
+											<button class="jp-next" role="button" tabindex="0" onclick=""></button>
 											</div>
 									</div>
 								</div>
@@ -192,14 +191,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var index = 1;
-	function next(){
-
-		if(index <= <%=musique.getPistes().size()%>){
-			index+=1;
-			document.getElementById("sum").innerHTML=index;
-		}
-	};
 
 	window.addEventListener("load", myFunction, false);
 
