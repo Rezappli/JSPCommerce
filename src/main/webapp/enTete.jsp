@@ -39,7 +39,7 @@
         <div class="collapse navbar-nav navbar-collapse" id="navbarText">
 
             <ul class="navbar-collapse me-auto mb-2 mb-lg-0">
-                <<li class="nav-item">
+                <li class="nav-item">
                     <img src="images/ecommerce.logo_.png" alt="" width="50" >
                 </li>
 
@@ -57,7 +57,18 @@
 
                 </li>
             </ul>
-            <a class="text-decoration-none" href="<%=response.encodeURL("./seConnecter.jsp")%>"><button class="btn btn-outline-light d-flex me-5" type="button"> Connexion/Inscription</button></a>
+            <%
+                if(session != null){
+                    if(session.getAttribute("id") != null){ %>
+                        <a class="text-decoration-none" href="<%=response.encodeURL("./seDeconnecter.jsp")%>"><button class="btn btn-outline-light d-flex me-5" type="button"> Se déconnecter</button></a>
+                        <a class="navbar-brand" href="<%=response.encodeURL("./controleProfil.jsp")%>">
+                            <img src="images/profil.png" alt="" width="30" >
+                        </a>
+                    <%}else{%>
+                        <a class="text-decoration-none" href="<%=response.encodeURL("./seConnecter.jsp")%>"><button class="btn btn-outline-light d-flex me-5" type="button"> Connexion/Inscription</button></a>
+                    <%}
+                }
+            %>
 
             <a class="navbar-brand" href="<%=response.encodeURL("./controlePanier.jsp")%>">
                 <img src="images/shopping-cart-add.png" alt="" width="30" >

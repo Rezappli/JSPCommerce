@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ include file="enTeteVide.jsp"%>
+<%@ include file="enTete.jsp"%>
 <%@ page import="commerce.catalogue.service.CatalogueManager"%>
 <%@ page import="commerce.catalogue.domaine.modele.Article"%>
 <%@ page import="commerce.catalogue.domaine.modele.Livre"%>
@@ -10,9 +10,9 @@
 <%
     if (session.getAttribute("panier")==null) {
   		response.sendRedirect("./index.jsp");
-  	}else if(){
-  	    response.sendRedirect(response.encodeURL("afficheRecherche.jsp?type="+ TypeArticle.TOUT.toString())) ;
-  	}else {
+  	}else if(session.getAttribute("id")==null){
+        response.sendRedirect("./seConnecter.jsp");
+  	} else {
   		CatalogueManager catalogueManager = (CatalogueManager) application
         									.getAttribute("catalogueManager");
         		List<Article> articles = catalogueManager.getArticles();
@@ -60,8 +60,14 @@
 
         <!-- Login Form -->
         <form action="/my-handling-form-page" method="get" >
-          <input type="text" id="login" class="fadeIn second" name="login" placeholder="identifiant">
-          <input type="text" id="password" class="fadeIn third" name="login" placeholder="mot de passe">
+          <div class="text-black50">Identifiant</div>
+          <input type="text" id="login" class="fadeIn second" name="login" placeholder="
+          <% session.getAttribute("id") %>
+          ">
+          <div class="text-black50">Mail</div>
+          <input type="text" id="mail" class="fadeIn third" name="mail" placeholder="
+          <% session.getAttribute("mail") %>
+          ">
           <input type="submit" id="valid_button" class="fadeIn fourth" value="s'enregistrer" >
         </form>
 
