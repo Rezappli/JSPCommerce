@@ -1,5 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
-<%@ include file="enTeteVide.jsp"%>
+<%@ include file="enTete.jsp"%>
 <%@ page import="commerce.catalogue.service.CatalogueManager"%>
 <%@ page import="commerce.catalogue.domaine.modele.Article"%>
 <%@ page import="commerce.catalogue.domaine.modele.Livre"%>

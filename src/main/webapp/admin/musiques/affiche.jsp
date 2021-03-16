@@ -27,6 +27,8 @@
           <tr>
             <th>R&eacute;f&eacute;rence&nbsp;</th>
             <th>Titre</th>
+            <th>Artiste</th>
+            <th>Date</th>
             <th>Disponibilit&eacute;</th>
             <th>AEN</th>
 			<th>Image</th>
@@ -44,6 +46,8 @@
           <tr>
             <td><%=musique.getRefArticle() %></td>
             <td><%=musique.getTitre() %></td>
+            <td><%=musique.getArtiste()%></td>
+            <td><%=musique.getDateDeParution() %></td>
             <td><%=musique.getDisponibilite() %></td>
             <td><%=musique.getEAN() %></td>
 <%

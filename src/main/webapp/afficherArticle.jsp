@@ -15,6 +15,14 @@
 									.getAttribute("catalogueManager");
 		String refArticle = request.getParameter("refArticle");
 		Article article = catalogueManager.chercherArticleParRef(refArticle);
+		Musique musique = null;
+		Livre livre = null;
+
+		if(article instanceof Musique){
+            musique = (Musique) article;
+        } else if(article instanceof Livre){
+            livre = (Livre) article;
+        }
 %>
 
 
@@ -40,18 +48,32 @@ function valid(){
 
 <div class="grid-container">
   <div class="ajout_panier">
-      <button type="button" onClick=valid()>
+      <button class="btn btn-outline-dark" type="button" onClick=valid()>
           Ajouter au panier
       </button>
   </div>
   <div class="quantite">
-    <input id="quantity_input" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1">
+    <input id="quantity_input" type="number" size="4" title="Qty" value="1" name="quantity" min="1" step="1" max="<%=article.getDisponibilite()%>">
   </div>
   <div class="prix">
     <h2 id="price"><%= article.getPrix() %> €</h2>
+      <div class="text-black-50">Stock : <%=article.getDisponibilite()%></div>
   </div>
   <div class="titre">
     <h1> <%= article.getTitre() %> </h1>
+      <%
+          if(article instanceof Musique){
+      %>
+      <h5 class="text-black-50"><%=musique.getArtiste()%> </h5>
+      <%
+          }else if(article instanceof Livre){
+      %>
+      <h5 class="text-black-50"> Auteur : <%=livre.getAuteur()%> </h5>
+      <h6 class="text-black-50"> ISBN : <%=livre.getISBN()%> </h6>
+
+      <%
+          }
+      %>
   </div>
   <div class="image">
     <img style="height:100%;"   src="<% if (article.getImage().startsWith("http"))

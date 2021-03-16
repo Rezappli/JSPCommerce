@@ -65,7 +65,7 @@
 										<input class="input-text qty text" type="number" size="4"
 											title="Qty" value="<%=uneLignePanier.getQuantite()%>"
 											name="cart[<%=uneLignePanier.getArticle().getRefArticle()%>][qty]"
-											min="1" step="1">
+											min="1" step="1" max="<%= uneLignePanier.getArticle().getDisponibilite()%>">
 									</div>
 								</td>
 								<td class="product-subtotal"><span class="amount"><%=uneLignePanier.getPrixTotal()%>€</span></td>
