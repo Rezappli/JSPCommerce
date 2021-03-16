@@ -107,7 +107,7 @@
 							        else
 							        	out.print("./images/"+article.getImage()) ; %>"
 							class="attachment-shop_catalog wp-post-image" alt="poster_2_up"
-							height="300" width="300"/>
+							height="300" width="200"/>
 						<h3><%=article.getTitre()%>
 						</h3> <span class="price"><ins>
 									<span class="amount"><%=article.getPrix()%> €</span>
