@@ -180,4 +180,29 @@ public class CatalogueManager {
 		}
 		return utilisateurs ;
 	}
+
+	public Utilisateur getUtilisateursbyName(String name) throws Exception {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession() ;
+		try {
+			session.beginTransaction();
+			Query query = session.createQuery("from commerce.catalogue.domaine.modele.Utilisateur") ;
+			utilisateurs = query.list() ;
+			session.getTransaction().commit();
+			for(Object etu: utilisateurs){
+				Utilisateur each = (Utilisateur) etu;
+				System.out.println("AA"+each.getName()+"AA");
+				if(each.getName().equals(name)){
+					return each;
+				}
+			}
+			System.out.println("RETURN NULL");
+			return null ;
+
+		}
+		catch (RuntimeException e) {
+			if (session.getTransaction() != null)
+				session.getTransaction().rollback();
+			throw e;
+		}
+	}
 }

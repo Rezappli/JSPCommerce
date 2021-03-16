@@ -23,10 +23,20 @@
       }
       if(request.getParameter("commande").equals("ajouter")){
         Utilisateur newUti = new Utilisateur();
-        newUti.setName(request.getParameter("name"));
-        newUti.setMail(request.getParameter("mail"));
-        newUti.setMdp(request.getParameter("mdp"));
-        catalogueManager.soumettreUtilisateur(newUti);
+        String stringMdp = request.getParameter("mdp");
+        if(request.getParameter("name").trim() != "" &&
+            request.getParameter("mail").trim() != "" &&
+            request.getParameter("mdp").trim() != "" &&
+            stringMdp.length() > 6 &&
+            catalogueManager.getUtilisateursbyName(request.getParameter("name").trim()) == null ){
+                newUti.setName(request.getParameter("name"));
+                newUti.setMail(request.getParameter("mail"));
+                newUti.setMdp(request.getParameter("mdp"));
+                catalogueManager.soumettreUtilisateur(newUti);
+        }
+
+        String redirectURL = "http://localhost:8080/tpv37/";
+        response.sendRedirect(redirectURL);
       }
       if (request.getParameter("commande").equals("supprimer")) {
         catalogueManager.supprimerUtilisateurParId(request.getParameter("id")); ;
