@@ -68,13 +68,13 @@
 										<div class="text-black-50 mt-3"><%= musique.getPistes().size()%> pistes</div>
 										<div class="jp-controls">
 											<button class="jp-previous" role="button" tabindex="0">previous</button>
-											<button class="jp-play" role="button" tabindex="0">play</button>
-											<button class="jp-stop" role="button" tabindex="0">stop</button>
+											<button class="jp-play" role="button" tabindex="0" onclick="show()">play</button>
+											<button class="jp-stop" role="button" tabindex="0" onclick="hide()">stop</button>
 											<button class="jp-next" role="button" tabindex="0" onclick="">next</button>
 										</div>
-										<div class="jp-controls">
+										<div class="jp-controls controls">
 											<button class="jp-seek-bar" style="height: 5px; width: 180px" role="button" tabindex="0">previous</button>
-											<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0">previous</button>
+											<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0" >previous</button>
 											<label class="jp-current-time" style="margin-left: -20px; margin-top: 5px" role="button" tabindex="0">previous</label>
 										</div>
 									</div>
@@ -116,8 +116,7 @@
 					</a> <a
 							href="<%=response.encodeURL("./afficherArticle.jsp?refArticle="
                               								+ article.getRefArticle() )%>"
-							class="button add_to_cart_button product_type_simple">Mettre
-						dans le panier</a>
+							class="button add_to_cart_button product_type_simple">Afficher les details</a>
 
 							<%
 						}
@@ -158,9 +157,9 @@
 										<button class="jp-previous" role="button" tabindex="0">previous</button>
 										<button class="jp-play" role="button" tabindex="0">play</button>
 										<button class="jp-stop" role="button" tabindex="0">stop</button>
-										<button class="jp-next" role="button" tabindex="0" onclick="">next</button>
+										<button class="jp-next" role="button" tabindex="0" >next</button>
 									</div>
-									<div class="jp-controls">
+									<div class="jp-controls controls">
 										<button class="jp-seek-bar" style="height: 5px; width: 180px" role="button" tabindex="0">previous</button>
 										<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0">previous</button>
 										<label class="jp-current-time" style="margin-left: -20px; margin-top: 5px" role="button" tabindex="0">previous</label>
