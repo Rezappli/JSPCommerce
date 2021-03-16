@@ -161,6 +161,8 @@ public class InitAmazon {
 							livre = new Livre();
 							livre.setRefArticle(item.getChild("ASIN",espaceNom).getText());
 							livre.setTitre(itemAttributes.getChild("Title",espaceNom).getText());
+							livre.setAuteur(itemAttributes.getChild("Author",espaceNom).getText());
+							livre.setISBN(itemAttributes.getChild("ISBN",espaceNom).getText());
 							livre.setImage(image.getChild("URL",espaceNom).getText());
 							livre.setPrix(Integer.parseInt(item.getChild("OfferSummary",espaceNom).getChild("LowestNewPrice",espaceNom).getChild("Amount",espaceNom).getText())/100.0);
 							livre.setDisponibilite(1);
