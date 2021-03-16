@@ -155,13 +155,17 @@
 						<div id="jp_container_<%=musique.getRefArticle()%>" class="jp-audio" role="application">
 							<div class="jp-type-playlist">
 								<div class="jp-gui jp-interface">
-									<div class="jp-controls-holder">
-										<div class="jp-controls">
-											<button class="jp-previous" role="button" tabindex="0">previous</button>
-											<button class="jp-play" role="button" tabindex="0">play</button>
-											<button class="jp-stop" role="button" tabindex="0">stop</button>
-											<button class="jp-next" role="button" tabindex="0" onclick=""></button>
-											</div>
+									<div class="text-black-50 mt-3"><%= musique.getPistes().size()%> pistes</div>
+									<div class="jp-controls">
+										<button class="jp-previous" role="button" tabindex="0">previous</button>
+										<button class="jp-play" role="button" tabindex="0">play</button>
+										<button class="jp-stop" role="button" tabindex="0">stop</button>
+										<button class="jp-next" role="button" tabindex="0" onclick="">next</button>
+									</div>
+									<div class="jp-controls">
+										<button class="jp-seek-bar" style="height: 5px; width: 180px" role="button" tabindex="0">previous</button>
+										<button class="jp-play-bar"	 style="height: 5px; padding-bottom: 5px; width: 180px" role="button" tabindex="0">previous</button>
+										<label class="jp-current-time" style="margin-left: -20px; margin-top: 5px" role="button" tabindex="0">previous</label>
 									</div>
 								</div>
 								<div class="jp-playlist">
